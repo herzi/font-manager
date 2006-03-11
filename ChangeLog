@@ -1,0 +1,18 @@
+2006-03-11  Sven Herzberg  <herzi@gnome-de.org>
+
+	* data/font-manager.glade,
+	* data/font-manager.gladep,
+	* src/Makefile,
+	* src/fm-main.c,
+	* src/fm-preview-list.c,
+	* src/fm-preview-list.h,
+	* src/fm-preview-model.c,
+	* src/fm-preview-model.h,
+	* src/fm-window.c,
+	* src/fm-window.h,
+	* src/glib-helpers.h,
+	* src/gtk-helpers.c,
+	* src/gtk-helpers.h,
+	* src/herzi-main-window.c,
+	* src/herzi-main-window.h: check in of the CeBIT Day 2 version
+
