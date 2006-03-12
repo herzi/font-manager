@@ -23,6 +23,11 @@
 
 #include "fm-window.h"
 
+#ifdef HAVE_CONFIG_H
+# include <config.h>
+#endif
+
+#include <glib/gi18n.h>
 #include <fontconfig/fontconfig.h>
 #include <pango/pangofc-fontmap.h>
 #include <glade/glade.h>
@@ -91,7 +96,7 @@ fw_prepare_lazy_init(FMWindow* self) {
 	data->s = FcConfigGetFonts(data->c, FcSetSystem);
 	data->i = 0;
 
-	gtk_statusbar_push(data->self->status, data->self->context_load, "Loading system fonts...");
+	gtk_statusbar_push(data->self->status, data->self->context_load, _("Loading system fonts..."));
 	g_idle_add((GSourceFunc)(update_list), data);
 	gtk_widget_show(self->progress);
 }
@@ -130,7 +135,7 @@ fm_window_init(FMWindow* self) {
 	GtkTreeModel* sort = NULL;
 	GladeXML* xml = glade_xml_new("../data/font-manager.glade", "main_content", NULL);
 
-	gtk_window_set_title(GTK_WINDOW(self), "Font Manager");
+	gtk_window_set_title(GTK_WINDOW(self), _("Font Manager"));
 
 	gtk_box_pack_start(GTK_BOX(HERZI_MAIN_WINDOW(self)->vbox), glade_xml_get_widget(xml, "main_content"), TRUE, TRUE, 0);
 
@@ -146,11 +151,11 @@ fm_window_init(FMWindow* self) {
 	gtk_tree_selection_set_mode(gtk_tree_view_get_selection(GTK_TREE_VIEW(tree)), GTK_SELECTION_MULTIPLE);
 	gtk_tree_view_set_model(GTK_TREE_VIEW(tree), sort);
 	gtk_tree_view_insert_column_with_attributes(tree, -1,
-					            "Family", gtk_cell_renderer_text_new(),
+					            _("Family"), gtk_cell_renderer_text_new(),
 					            "text", COL_NAME,
 					            NULL);
 	gtk_tree_view_insert_column_with_attributes(tree, -1,
-					            "Style", gtk_cell_renderer_text_new(),
+					            _("Style"), gtk_cell_renderer_text_new(),
 					            "text", COL_STYLE,
 					            NULL);
 	g_signal_connect_swapped(gtk_tree_view_get_selection(GTK_TREE_VIEW(tree)), "changed",

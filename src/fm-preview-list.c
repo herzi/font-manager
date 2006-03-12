@@ -23,6 +23,11 @@
 
 #include "fm-preview-list.h"
 
+#ifdef HAVE_CONFIG_G
+# include <config.h>
+#endif
+
+#include <glib/gi18n.h>
 #include <gtk/gtkcellrenderertext.h>
 #include <gtk/gtktreeselection.h>
 #include <glade/glade.h>
@@ -66,7 +71,7 @@ fm_preview_list_init(FMPreviewList* self) {
 	GtkTreeView* tree = GTK_TREE_VIEW(self);
 	gtk_tree_view_set_model(tree, self->model);
 	gtk_tree_view_insert_column_with_attributes(tree, -1,
-						    "Preview", gtk_cell_renderer_text_new(),
+						    _("Preview"), gtk_cell_renderer_text_new(),
 						    "background", FM_PREVIEW_MODEL_COL_BACKGROUND,
 						    "ellipsize", FM_PREVIEW_MODEL_COL_ELLIPSIZE,
 						    "font-desc", FM_PREVIEW_MODEL_COL_FONT,

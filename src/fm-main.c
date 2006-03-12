@@ -38,6 +38,11 @@ fm_glade_helper(GladeXML* xml, gchar* func_name, gchar* name, gchar* string, gch
 
 int
 main(int argc, char** argv) {
+#ifdef ENABLE_NLS
+	bindtextdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
+	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+	textdomain(GETTEXT_PACKAGE);
+#endif
 	gtk_init(&argc, &argv);
 	glade_init();
 

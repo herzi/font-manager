@@ -1,0 +1,59 @@
+# German translation of font-manager.
+# Copyright (C) 2006 THE font-manager'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the font-manager package.
+# Sven Herzberg <herzi@gnome-de.org>, 2006.
+# , fuzzy
+# 
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: font-manager 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2006-03-11 21:41+0100\n"
+"PO-Revision-Date: 2006-03-11 21:44+0100\n"
+"Last-Translator: Sven Herzberg <herzi@gnome-de.org>\n"
+"Language-Team: German <gnome-de@gnome.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit"
+
+#: ../data/font-manager.glade.h:1
+msgid "<b>System Fonts</b>"
+msgstr "<b>Systemschriften</b>"
+
+#: ../data/font-manager.glade.h:2
+msgid "Display Font"
+msgstr "Schrift anzeigen"
+
+#: ../data/font-manager.glade.h:3
+msgid "Size (pt)"
+msgstr "Größe (Pt)"
+
+#: ../data/font-manager.glade.h:4 ../src/fm-preview-model.c:142
+msgid "The quick brown fox jumps over the lazy dog."
+msgstr "Franz jagt im komplett verwahrlosten Taxi quer durch Bayern."
+
+#: ../src/fm-preview-list.c:74
+msgid "Preview"
+msgstr "Vorschau"
+
+#: ../src/fm-window.c:99
+msgid "Loading system fonts..."
+msgstr "Lade Systemschriften…"
+
+#: ../src/fm-window.c:138
+msgid "Font Manager"
+msgstr "Schrift-Verwaltung"
+
+#: ../src/fm-window.c:154
+msgid "Family"
+msgstr "Familie"
+
+#: ../src/fm-window.c:158
+msgid "Style"
+msgstr "Stil"
+
+#: ../src/herzi-main-window.c:57
+msgid "_File"
+msgstr "_Datei"
+

@@ -1,3 +1,19 @@
+2006-03-12  Sven Herzberg  <herzi@gnome-de.org>
+
+	* Makefile.am,
+	* autogen.sh,
+	* configure.in,
+	* po/ChangeLog,
+	* po/POTFILES.in,
+	* po/de.po,
+	* src/Makefile,
+	* src/Makefile.am,
+	* src/fm-main.c,
+	* src/fm-preview-list.c,
+	* src/fm-preview-model.c,
+	* src/fm-window.c: added autotool build system, intltool and gettext
+	for i18n
+
 2006-03-11  Sven Herzberg  <herzi@gnome-de.org>
 
 	* data/font-manager.glade,

@@ -1,0 +1,154 @@
+dnl configure.in for font-manager
+dnl
+dnl process this file with autoconf (preferably by running autogen.sh) to
+dnl create the configure script for automatic package configuration
+
+dnl  -------------------------
+dnl | autotool initialisation |-----------------------------------------------
+dnl  -------------------------
+
+AC_INIT(src)
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(font-manager,0.0.1)
+AM_MAINTAINER_MODE
+dnl AM_ACLOCAL_INCLUDE(macros)
+
+dnl  ------------------
+dnl | neccessary tools |------------------------------------------------------
+dnl  ------------------
+
+CXX=no
+F77=no
+GCJ=no
+
+AC_PROG_CC
+dnl AC_PROG_LIBTOOL
+AC_PROG_INTLTOOL
+
+dnl  -----------------------------
+dnl | gtk-doc and gnome-doc-utils |-------------------------------------------
+dnl  -----------------------------
+
+dnl GTK_DOC_CHECK([1.0])
+dnl DISTCHECK_CONFIGURE_FLAGS="--enable-gtk-doc --disable-update-mimedb --disable-schemas-install --disable-scrollkeeper"
+dnl AC_SUBST(DISTCHECK_CONFIGURE_FLAGS)
+
+dnl GNOME_DOC_INIT
+
+dnl  --------------------
+dnl | neccessary headers |----------------------------------------------------
+dnl  --------------------
+
+dnl configure already checks for stdint.h
+dnl AC_CHECK_HEADER(stdint.h)
+
+dnl  ----------------------
+dnl | neccessary libraries |--------------------------------------------------
+dnl  ----------------------
+
+PKG_CHECK_MODULES(CORE,[gtk+-2.0 libglade-2.0 fontconfig freetype2])
+
+dnl AC_PATH_PROG(GCONFTOOL, gconftool-2)
+dnl AM_GCONF_SOURCE_2
+
+dnl  -----------------
+dnl | compile options |-------------------------------------------------------
+dnl  -----------------
+
+dnl AC_ARG_ENABLE(developer,
+dnl	      [  --enable-developer      Enable developer compiler flags. (default=auto) TURN THIS OFF WHEN CREATING PACKAGES FROM CVS],
+dnl	      set_developer="$enableval",
+dnl	      [
+dnl	      	if test -d $srcdir/CVS; then
+dnl			set_developer=yes
+dnl		else
+dnl			set_developer=no
+dnl		fi
+dnl	      ])
+
+dnl AC_MSG_CHECKING([whether you are a developer])
+dnl AC_MSG_RESULT($set_developer)
+
+dnl HERZI_CHECK_DEVELOP_CFLAGS
+
+dnl  --------------------
+dnl | installation paths |----------------------------------------------------
+dnl  --------------------
+
+AC_MSG_CHECKING(prefix)
+
+if test "x${prefix}" = "xNONE"; then
+  PACKAGE_PREFIX="${ac_default_prefix}"
+else
+  PACKAGE_PREFIX="${prefix}"
+fi
+AC_MSG_RESULT($PACKAGE_PREFIX)
+
+dnl  ------------------------------
+dnl | gnome specific configuration |------------------------------------------
+dnl  ------------------------------
+
+AC_MSG_CHECKING([for glib-genmarshal])
+GLIB_GENMARSHAL=`pkg-config --variable=glib_genmarshal glib-2.0`
+AC_SUBST(GLIB_GENMARSHAL)
+AC_MSG_RESULT($GLIB_GENMARSHAL)
+
+AC_MSG_CHECKING([for glib-mkenums])
+GLIB_MKENUMS=`pkg-config --variable=glib_mkenums glib-2.0`
+AC_SUBST(GLIB_MKENUMS)
+AC_MSG_RESULT($GLIB_MKENUMS)
+
+dnl  ------------------------
+dnl | mime data installation |------------------------------------------------
+dnl  ------------------------
+
+dnl AC_ARG_ENABLE(update-mimedb,
+dnl 	      AC_HELP_STRING([--disable-update-mimedb],
+dnl 			     [disable the update-mime-database after install [default=no]]),,
+dnl 	      enable_update_mimedb=yes)
+dnl if test x$enable_update_mimedb = xyes; then
+dnl 	AC_CHECK_PROG(enable_update_mimedb,update-mime-database,yes,no)
+dnl fi
+dnl AM_CONDITIONAL(ENABLE_UPDATE_MIMEDB, test x$enable_update_mimedb = xyes)
+
+
+dnl  ------------------------------
+dnl | internationalisation support |------------------------------------------
+dnl  ------------------------------
+
+dnl Please keep the languages in alphabetical order
+ALL_LINGUAS="de"
+
+GETTEXT_PACKAGE=$PACKAGE
+AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, "$GETTEXT_PACKAGE",
+		[The package name for gettext])
+AC_SUBST(GETTEXT_PACKAGE)
+AM_GLIB_GNU_GETTEXT
+
+PACKAGE_LOCALE_DIR="${PACKAGE_PREFIX}/${DATADIRNAME}/locale"
+AC_DEFINE_UNQUOTED(PACKAGE_LOCALE_DIR,"$PACKAGE_LOCALE_DIR",
+		[The package's locale path for gettext])
+
+dnl  --------------------
+dnl | installation paths |----------------------------------------------------
+dnl  --------------------
+
+PACKAGE_DATA_DIR="${PACKAGE_PREFIX}/${DATADIRNAME}"
+AC_DEFINE_UNQUOTED(PACKAGE_DATA_DIR,"$PACKAGE_DATA_DIR",
+		[The package's data path])
+
+AC_DEFINE_UNQUOTED(PACKAGE_GCONF_PATH, "/apps/criawips",
+                [The package's gconf base path])
+
+dnl  -------------------------------
+dnl | pulling the configuration out |-----------------------------------------
+dnl  -------------------------------
+
+AC_OUTPUT([
+  Makefile
+  src/Makefile
+  po/Makefile.in
+])
+
+dnl FIXME add some nice summary
+

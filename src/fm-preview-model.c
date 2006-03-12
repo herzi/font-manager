@@ -23,6 +23,11 @@
 
 #include "fm-preview-model.h"
 
+#ifdef HAVE_CONFIG_H
+# include <config.h>
+#endif
+
+#include <glib/gi18n.h>
 #include <pango/pango-enum-types.h>
 #include <pango/pango-font.h>
 #include <gdk/gdkcolor.h>
@@ -134,7 +139,7 @@ G_DEFINE_TYPE_WITH_CODE(FMPreviewModel, fm_preview_model, G_TYPE_OBJECT,
 
 static void
 fm_preview_model_init(FMPreviewModel* self) {
-	self->text = g_strdup("The quick brown fox jumps over the lazy dog.");
+	self->text = g_strdup(_("The quick brown fox jumps over the lazy dog."));
 	self->size = 12.0;
 }
 
