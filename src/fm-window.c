@@ -30,6 +30,7 @@
 #include <glib/gi18n.h>
 #include <fontconfig/fontconfig.h>
 #include <pango/pangofc-fontmap.h>
+#include <gconf/gconf-client.h>
 #include <glade/glade.h>
 
 #include "fm-preview-list.h"
@@ -179,6 +180,27 @@ fm_window_init(FMWindow* self) {
 	g_object_unref(xml);
 }
 
+#define GCONF_PREFIX "/apps/font-manager/"
+
+static gchar*
+fm_get_geometry(HerziMainWindow* window) {
+	GConfClient* client = gconf_client_get_default();
+	gchar* geometry = gconf_client_get_string(client, GCONF_PREFIX "geometry", NULL);
+	g_object_unref(client);
+	return geometry;
+}
+
 static void
-fm_window_class_init(FMWindowClass* self_class) {}
+fm_set_geometry(HerziMainWindow* window, gchar const* geometry) {
+	GConfClient* client = gconf_client_get_default();
+	gconf_client_set_string(client, GCONF_PREFIX "geometry", geometry, NULL);
+	g_object_unref(client);
+}
+
+static void
+fm_window_class_init(FMWindowClass* self_class) {
+	HerziMainWindowClass* hmw_class = HERZI_MAIN_WINDOW_CLASS(self_class);
+	hmw_class->get_geometry = fm_get_geometry;
+	hmw_class->set_geometry = fm_set_geometry;
+}
 

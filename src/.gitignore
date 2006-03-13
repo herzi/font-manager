@@ -1,2 +1,4 @@
 .deps
 font-manager
+Makefile
+Makefile.in

@@ -1,3 +1,8 @@
+2006-03-13  Sven Herzberg  <herzi@gnome-de.org>
+
+	* configure.in: added gconf dependency
+	* src/fm-window.c: (re)store the window position and size
+
 2006-03-12  Sven Herzberg  <herzi@gnome-de.org>
 
 	* Makefile.am,
