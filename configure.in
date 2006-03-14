@@ -33,7 +33,7 @@ dnl GTK_DOC_CHECK([1.0])
 dnl DISTCHECK_CONFIGURE_FLAGS="--enable-gtk-doc --disable-update-mimedb --disable-schemas-install --disable-scrollkeeper"
 dnl AC_SUBST(DISTCHECK_CONFIGURE_FLAGS)
 
-dnl GNOME_DOC_INIT
+GNOME_DOC_INIT
 
 dnl  --------------------
 dnl | neccessary headers |----------------------------------------------------
@@ -46,7 +46,7 @@ dnl  ----------------------
 dnl | neccessary libraries |--------------------------------------------------
 dnl  ----------------------
 
-PKG_CHECK_MODULES(CORE,[gtk+-2.0 libglade-2.0 fontconfig freetype2 gconf-2.0])
+PKG_CHECK_MODULES(CORE,[gtk+-2.0 libgnome-2.0 libglade-2.0 fontconfig freetype2 gconf-2.0])
 
 dnl AC_PATH_PROG(GCONFTOOL, gconftool-2)
 dnl AM_GCONF_SOURCE_2
@@ -147,6 +147,8 @@ dnl  -------------------------------
 AC_OUTPUT([
   Makefile
   data/Makefile
+  doc/Makefile
+  doc/user-guide/Makefile
   src/Makefile
   po/Makefile.in
 ])

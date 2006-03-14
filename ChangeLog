@@ -1,5 +1,18 @@
 2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
 
+	* Makefile.am,
+	* configure.in,
+	* doc/Makefile.am,
+	* doc/user-guide/C/font-manager.xml,
+	* doc/user-guide/Makefile.am,
+	* doc/user-guide/de/de.po,
+	* doc/user-guide/user-guide.omf.in,
+	* src/fm-main.c,
+	* src/fm-window.c: added documentation support and a first draft of
+	the manual
+
+2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
+
 	* src/fm-window.c: added about dialog
 
 2006-03-14  Sven Herzberg  <herzi@gnome-de.org>

@@ -1,0 +1,10 @@
+<?xml version="1.0" standalone="no"?>
+<omf>
+  <resource>
+      <subject category="GNOME|Graphics"/>
+          <type>manual</type>
+	  <relation seriesid="bf1a9fb6-b36d-11da-85b9-cbc6f54e97ae" />
+	  <rights type="GNU FDL" license.version="1.1" holder="Shaun McCance"/>
+   </resource>
+</omf>
+

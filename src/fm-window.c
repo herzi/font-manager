@@ -153,17 +153,35 @@ fw_action_help_about(GtkAction* action, FMWindow* self) {
 	gtk_widget_destroy(dialog);
 }
 
+static void
+fw_action_help_index(GtkAction* action, FMWindow* self) {
+	GError* error = NULL;
+	gnome_help_display("font-manager.xml", NULL, &error);
+
+	if(error) {
+		// FIXME: add error dialog
+		g_message("%s", error->message);
+		g_error_free(error);
+		error = NULL;
+	}
+}
+
 static GtkActionEntry entries[] = {
 	{"Help",	NULL,			N_("_Help")},
 	{"HelpAbout",	GTK_STOCK_ABOUT,	NULL,
 	 NULL,		NULL, // FIXME: check for action hint
-	 G_CALLBACK(fw_action_help_about)}
+	 G_CALLBACK(fw_action_help_about)},
+	{"HelpIndex",	GTK_STOCK_HELP,		N_("_User Guide"),
+	 "F1",		NULL, // FIXME: check for action hint
+	 G_CALLBACK(fw_action_help_index)}
 };
 
 static gchar const * const ui =
 "<ui>"
 "	<menubar name='menubar'>"
 "		<menu action='Help'>"
+"			<menuitem action='HelpIndex'/>"
+"			<separator />"
 "			<menuitem action='HelpAbout'/>"
 "		</menu>"
 "	</menubar>"

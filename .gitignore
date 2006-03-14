@@ -8,6 +8,7 @@ configure
 COPYING
 depcomp
 diff
+gnome-doc-utils.make
 INSTALL
 install-sh
 intltool-extract

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML 4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<article id="font-manager-user-guide">
+  <articleinfo>
+    <title>Font Manager User Guide</title>
+    <authorgroup>
+      <author>
+	<firstname>Sven</firstname> <surname>Herzberg</surname>
+	<affiliation>
+	  <address>
+	    <email>herzi@gnome.org</email>
+	  </address>
+	</affiliation>
+      </author>
+    </authorgroup>
+    <copyright>
+      <year>2006</year> <holder>Sven Herzberg</holder>
+    </copyright>
+    <publisher>
+      <publishername>Font Manager Project</publishername>
+    </publisher>
+<!--    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>-->
+    <revhistory>
+      <revision>
+        <revnumber>0.0.1</revnumber>
+        <date>2006-03-14</date>
+      </revision>
+    </revhistory>
+  </articleinfo>
+
+  <section id="introduction">
+    <title>Introduction</title>
+      <para>Read this manual to learn about the font manager.</para>
+  </section>
+ 
+   <section id="getting-started">
+      <title>Getting Started</title> 
+      <para>Just launch the font manager to get started.</para>
+   </section>
+
+</article>

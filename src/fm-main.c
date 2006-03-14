@@ -21,7 +21,13 @@
  * USA
  */
 
+#ifdef HAVE_CONFIG_H
+# include <config.h>
+#endif
+
+#include <glib/gi18n.h>
 #include <glade/glade.h>
+#include <libgnome/libgnome.h>
 #include "fm-preview-list.h"
 #include "fm-window.h"
 
@@ -45,6 +51,12 @@ main(int argc, char** argv) {
 #endif
 	gtk_init(&argc, &argv);
 	glade_init();
+	gnome_program_init(PACKAGE, VERSION,
+			   LIBGNOME_MODULE,
+			   argc, argv,
+			   GNOME_PARAM_APP_DATADIR, PACKAGE_DATA_DIR,
+			   GNOME_PARAM_HUMAN_READABLE_NAME, _("Font Manager"),
+			   NULL);
 
 	glade_set_custom_handler((GladeXMLCustomWidgetHandler)fm_glade_helper, NULL);
 	gtk_widget_show(fm_window_new());
