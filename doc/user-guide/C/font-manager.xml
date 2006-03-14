@@ -19,7 +19,7 @@
     <publisher>
       <publishername>Font Manager Project</publishername>
     </publisher>
-<!--    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>-->
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
     <revhistory>
       <revision>
         <revnumber>0.0.1</revnumber>
