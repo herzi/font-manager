@@ -1,5 +1,9 @@
 2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
 
+	* src/fm-window.c: added about dialog
+
+2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
+
 	* Makefile.am,
 	* configure.in,
 	* data/Makefile.am,

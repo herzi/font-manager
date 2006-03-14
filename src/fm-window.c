@@ -129,6 +129,62 @@ fw_update_preview_size(FMWindow* self, GtkSpinButton* spin) {
 }
 
 static void
+fw_action_help_about(GtkAction* action, FMWindow* self) {
+	gchar const* authors[] = {
+		"Sven Herzberg",
+		NULL
+	};
+	GtkWidget* dialog = gtk_about_dialog_new();
+	gtk_about_dialog_set_name   (GTK_ABOUT_DIALOG(dialog), _("Font Manager"));
+	gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), _("0.0.1")); // FIXME: get this auto-generated and translatable (for arab numbers)
+	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), _("Copyright (C) 2006 Sven Herzberg"));
+	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog), _("A font management tool for the GNOME desktop environment"));
+	// FIXME: gtk_about_dialog_set_license
+	// FIXME: gtk_about_dialog_set_website
+	// FIXME: gtk_about_dialog_set_website_label
+	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(dialog), authors);
+	// FIXME: gtk_about_dialog_set_artists
+	// FIXME: gtk_about_dialog_set_documenters
+	gtk_about_dialog_set_translator_credits(GTK_ABOUT_DIALOG(dialog), _("translator-credits"));
+	// FIXME: gtk_about_dialog_set_logo
+	// FIXME: gtk_about_dialog_set_url_hook
+
+	gtk_dialog_run(GTK_DIALOG(dialog));
+	gtk_widget_destroy(dialog);
+}
+
+static GtkActionEntry entries[] = {
+	{"Help",	NULL,			N_("_Help")},
+	{"HelpAbout",	GTK_STOCK_ABOUT,	NULL,
+	 NULL,		NULL, // FIXME: check for action hint
+	 G_CALLBACK(fw_action_help_about)}
+};
+
+static gchar const * const ui =
+"<ui>"
+"	<menubar name='menubar'>"
+"		<menu action='Help'>"
+"			<menuitem action='HelpAbout'/>"
+"		</menu>"
+"	</menubar>"
+"</ui>";
+
+static void
+fw_init_menus_and_toolbars(FMWindow* self) {
+	GtkUIManager* ui_manager = HERZI_MAIN_WINDOW(self)->ui_manager;
+	GtkActionGroup* actions = gtk_action_group_new("font-manager");
+	GError* error = NULL;
+	gtk_action_group_add_actions(actions, entries, G_N_ELEMENTS(entries), self);
+	gtk_ui_manager_insert_action_group(ui_manager, actions, 0);
+	gtk_ui_manager_add_ui_from_string(ui_manager, ui, -1, &error);
+	g_object_unref(actions);
+
+	if(error) {
+		g_critical("%s", error->message);
+	}
+}
+
+static void
 fm_window_init(FMWindow* self) {
 	GtkWidget* expander = NULL,
 		 * alignment = NULL,
@@ -146,8 +202,9 @@ fm_window_init(FMWindow* self) {
 	}
 
 	gtk_window_set_title(GTK_WINDOW(self), _("Font Manager"));
-
 	gtk_box_pack_start(GTK_BOX(HERZI_MAIN_WINDOW(self)->vbox), glade_xml_get_widget(xml, "main_content"), TRUE, TRUE, 0);
+
+	fw_init_menus_and_toolbars(self);
 
 	/* preview list */
 	self->preview = glade_xml_get_widget(xml, "preview_list");
