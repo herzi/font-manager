@@ -137,27 +137,37 @@ fpl_set_app_font(GtkTreeModel* model, GtkTreePath* path, GtkTreeIter* iter, gcha
 
 static void
 fpl_set_application_font(FMPreviewList* self) {
-	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)), fpl_set_app_font, "/desktop/gnome/interface/font_name");
+	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)),
+					    (GtkTreeSelectionForeachFunc)fpl_set_app_font,
+					    "/desktop/gnome/interface/font_name");
 }
 
 static void
 fpl_set_desktop_font(FMPreviewList* self) {
-	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)), fpl_set_app_font, "/apps/nautilus/preferences/desktop_font");
+	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)),
+					    (GtkTreeSelectionForeachFunc)fpl_set_app_font,
+					    "/apps/nautilus/preferences/desktop_font");
 }
 
 static void
 fpl_set_document_font(FMPreviewList* self) {
-	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)), fpl_set_app_font, "/desktop/gnome/interface/document_font_name");
+	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)),
+					    (GtkTreeSelectionForeachFunc)fpl_set_app_font,
+					    "/desktop/gnome/interface/document_font_name");
 }
 
 static void
 fpl_set_window_font(FMPreviewList* self) {
-	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)), fpl_set_app_font, "/apps/metacity/general/titlebar_font");
+	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)),
+					    (GtkTreeSelectionForeachFunc)fpl_set_app_font,
+					    "/apps/metacity/general/titlebar_font");
 }
 
 static void
 fpl_set_terminal_font(FMPreviewList* self) {
-	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)), fpl_set_app_font, "/desktop/gnome/interface/monospace_font_name");
+	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)),
+					    (GtkTreeSelectionForeachFunc)fpl_set_app_font,
+					    "/desktop/gnome/interface/monospace_font_name");
 }
 
 static gboolean

@@ -1,5 +1,9 @@
 2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
 
+	* src/fm-preview-list.c: fixed compile warnings
+
+2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
+
 	* data/font-manager.glade,
 	* src/Makefile.am,
 	* src/fm-preview-list.c,
