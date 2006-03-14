@@ -1,5 +1,13 @@
 2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
 
+	* data/font-manager.glade,
+	* src/Makefile.am,
+	* src/fm-preview-list.c,
+	* src/fm-settings.c,
+	* src/fm-settings.h: added code for setting GNOMEs default fonts
+
+2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
+
 	* src/fm-preview-list.c,
 	* src/fm-preview-model.c,
 	* src/fm-window.c: removed all compile warnings

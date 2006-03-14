@@ -251,8 +251,59 @@
   <child>
     <widget class="GtkMenuItem" id="popup_display_font">
       <property name="visible">True</property>
-      <property name="label" translatable="yes">Display Font</property>
+      <property name="label" translatable="yes">Display _Font</property>
       <property name="use_underline">True</property>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkSeparatorMenuItem" id="trennlinie1">
+      <property name="visible">True</property>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkMenuItem" id="popup_application_font">
+      <property name="visible">True</property>
+      <property name="label" translatable="yes">Set as _Application Font</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="on_popup_application_font_activate" last_modification_time="Tue, 14 Mar 2006 11:00:13 GMT"/>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkMenuItem" id="popup_desktop_font">
+      <property name="visible">True</property>
+      <property name="label" translatable="yes">Set as _Desktop Font</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="on_popup_desktop_font_activate" last_modification_time="Tue, 14 Mar 2006 11:00:13 GMT"/>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkMenuItem" id="popup_document_font">
+      <property name="visible">True</property>
+      <property name="label" translatable="yes">Set as D_ocument Font</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="on_set_as_document_font1_activate" last_modification_time="Tue, 14 Mar 2006 11:30:09 GMT"/>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkMenuItem" id="popup_terminal_font">
+      <property name="visible">True</property>
+      <property name="label" translatable="yes">Set as _Terminal Font</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="on_popup_terminal_font_activate" last_modification_time="Tue, 14 Mar 2006 11:00:13 GMT"/>
+    </widget>
+  </child>
+
+  <child>
+    <widget class="GtkMenuItem" id="popup_window_font">
+      <property name="visible">True</property>
+      <property name="label" translatable="yes">Set as _Window Title Font</property>
+      <property name="use_underline">True</property>
+      <signal name="activate" handler="on_popup_window_font_activate" last_modification_time="Tue, 14 Mar 2006 11:00:13 GMT"/>
     </widget>
   </child>
 </widget>

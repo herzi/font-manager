@@ -123,6 +123,43 @@ fpl_display_fonts(FMPreviewList* self) {
 					    self);
 }
 
+static void
+fpl_set_app_font(GtkTreeModel* model, GtkTreePath* path, GtkTreeIter* iter, gchar const* key) {
+	PangoFontDescription* desc = NULL;
+	gchar* font = NULL;
+	gtk_tree_model_get(model, iter,
+			   FM_PREVIEW_MODEL_COL_FONT, &desc,
+			   -1);
+	font = pango_font_description_to_string(desc);
+	fm_settings_set_font(key, font);
+	g_free(font);
+}
+
+static void
+fpl_set_application_font(FMPreviewList* self) {
+	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)), fpl_set_app_font, "/desktop/gnome/interface/font_name");
+}
+
+static void
+fpl_set_desktop_font(FMPreviewList* self) {
+	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)), fpl_set_app_font, "/apps/nautilus/preferences/desktop_font");
+}
+
+static void
+fpl_set_document_font(FMPreviewList* self) {
+	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)), fpl_set_app_font, "/desktop/gnome/interface/document_font_name");
+}
+
+static void
+fpl_set_window_font(FMPreviewList* self) {
+	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)), fpl_set_app_font, "/apps/metacity/general/titlebar_font");
+}
+
+static void
+fpl_set_terminal_font(FMPreviewList* self) {
+	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)), fpl_set_app_font, "/desktop/gnome/interface/monospace_font_name");
+}
+
 static gboolean
 fpl_button_press_event(GtkWidget* widget, GdkEventButton* ev) {
 	gboolean retval = FALSE;
@@ -136,6 +173,25 @@ fpl_button_press_event(GtkWidget* widget, GdkEventButton* ev) {
 		gtk_menu_popup(glade_xml_get_widget(xml, "popup_preview"), NULL, NULL, NULL, NULL, ev->button, ev->time);
 		g_signal_connect_swapped(glade_xml_get_widget(xml, "popup_display_font"), "activate",
 					 G_CALLBACK(fpl_display_fonts), self);
+
+		if(gtk_tree_selection_count_selected_rows(gtk_tree_view_get_selection(GTK_TREE_VIEW(self))) == 1) {
+			g_signal_connect_swapped(glade_xml_get_widget(xml, "popup_application_font"), "activate",
+						 G_CALLBACK(fpl_set_application_font), self);
+			g_signal_connect_swapped(glade_xml_get_widget(xml, "popup_desktop_font"), "activate",
+						 G_CALLBACK(fpl_set_desktop_font), self);
+			g_signal_connect_swapped(glade_xml_get_widget(xml, "popup_document_font"), "activate",
+						 G_CALLBACK(fpl_set_document_font), self);
+			g_signal_connect_swapped(glade_xml_get_widget(xml, "popup_terminal_font"), "activate",
+						 G_CALLBACK(fpl_set_terminal_font), self);
+			g_signal_connect_swapped(glade_xml_get_widget(xml, "popup_window_font"), "activate",
+						 G_CALLBACK(fpl_set_window_font), self);
+		} else {
+			gtk_widget_set_sensitive(glade_xml_get_widget(xml, "popup_application_font"), FALSE);
+			gtk_widget_set_sensitive(glade_xml_get_widget(xml, "popup_desktop_font"), FALSE);
+			gtk_widget_set_sensitive(glade_xml_get_widget(xml, "popup_document_font"), FALSE);
+			gtk_widget_set_sensitive(glade_xml_get_widget(xml, "popup_terminal_font"), FALSE);
+			gtk_widget_set_sensitive(glade_xml_get_widget(xml, "popup_window_font"), FALSE);
+		}
 
 		g_object_unref(xml);
 	} else {

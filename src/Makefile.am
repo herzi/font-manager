@@ -7,6 +7,8 @@ font_manager_SOURCES=\
 	fm-preview-list.h \
 	fm-preview-model.c \
 	fm-preview-model.h \
+	fm-settings.c \
+	fm-settings.h \
 	fm-window.c \
 	fm-window.h \
 	glib-helpers.h \
