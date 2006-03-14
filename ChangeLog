@@ -1,3 +1,9 @@
+2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
+
+	* src/fm-preview-list.c,
+	* src/fm-preview-model.c,
+	* src/fm-window.c: removed all compile warnings
+
 2006-03-13  Sven Herzberg  <herzi@gnome-de.org>
 
 	* configure.in: added gconf dependency

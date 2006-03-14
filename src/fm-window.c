@@ -61,15 +61,16 @@ static gboolean
 update_list(struct data* data) {
 	gint8* s = NULL;
 
-	if(!FcPatternGetString(data->s->fonts[data->i], "family", 0, &s)) {
+	if(!FcPatternGetString(data->s->fonts[data->i], "family", 0, (FcChar8**)&s)) {
 		GtkTreeIter iter;
-		gtk_list_store_append(data->self->model, &iter);
-		gtk_list_store_set(data->self->model, &iter,
+		GtkListStore* store = GTK_LIST_STORE(data->self->model);
+		gtk_list_store_append(store, &iter);
+		gtk_list_store_set(store, &iter,
 				   COL_NAME, s,
 				   COL_PATTERN, data->s->fonts[data->i],
 				   -1);
-		if(!FcPatternGetString(data->s->fonts[data->i], FC_STYLE, 0, &s)) {
-			gtk_list_store_set(data->self->model, &iter,
+		if(!FcPatternGetString(data->s->fonts[data->i], FC_STYLE, 0, (FcChar8**)&s)) {
+			gtk_list_store_set(store, &iter,
 					   COL_STYLE, s,
 					   -1);
 		}
@@ -78,7 +79,7 @@ update_list(struct data* data) {
 	gtk_progress_bar_set_fraction(data->self->progress, 1.0 * data->i / data->s->nfont);
 
 	if(data->i >= data->s->nfont) {
-		gtk_widget_hide(data->self->progress);
+		gtk_widget_hide(GTK_WIDGET(data->self->progress));
 		gtk_statusbar_pop(data->self->status, data->self->context_load);
 		FcConfigDestroy(data->c);
 		g_free(data);
@@ -99,7 +100,7 @@ fw_prepare_lazy_init(FMWindow* self) {
 
 	gtk_statusbar_push(data->self->status, data->self->context_load, _("Loading system fonts..."));
 	g_idle_add((GSourceFunc)(update_list), data);
-	gtk_widget_show(self->progress);
+	gtk_widget_show(GTK_WIDGET(self->progress));
 }
 
 static void
@@ -119,12 +120,12 @@ font_selection_changed(FMWindow* self, GtkTreeSelection* selection) {
 
 static void
 fw_update_preview_text(FMWindow* self, GParamSpec* pspec, GtkEntry* entry) {
-	fm_preview_list_set_text(self->preview, gtk_entry_get_text(entry));
+	fm_preview_list_set_text(FM_PREVIEW_LIST(self->preview), gtk_entry_get_text(entry));
 }
 
 static void
 fw_update_preview_size(FMWindow* self, GtkSpinButton* spin) {
-	fm_preview_list_set_size(self->preview, gtk_spin_button_get_value(spin));
+	fm_preview_list_set_size(FM_PREVIEW_LIST(self->preview), gtk_spin_button_get_value(spin));
 }
 
 static void
@@ -144,18 +145,18 @@ fm_window_init(FMWindow* self) {
 	self->preview = glade_xml_get_widget(xml, "preview_list");
 
 	/* system font list */
-	self->model = gtk_list_store_new(N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_POINTER);
+	self->model = GTK_TREE_MODEL(gtk_list_store_new(N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_POINTER));
 	sort = gtk_tree_model_sort_new_with_model(self->model);
-	gtk_tree_sortable_set_sort_column_id(sort, COL_NAME, GTK_SORT_ASCENDING);
+	gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(sort), COL_NAME, GTK_SORT_ASCENDING);
 
 	tree = glade_xml_get_widget(xml, "treeview_system_fonts");
 	gtk_tree_selection_set_mode(gtk_tree_view_get_selection(GTK_TREE_VIEW(tree)), GTK_SELECTION_MULTIPLE);
 	gtk_tree_view_set_model(GTK_TREE_VIEW(tree), sort);
-	gtk_tree_view_insert_column_with_attributes(tree, -1,
+	gtk_tree_view_insert_column_with_attributes(GTK_TREE_VIEW(tree), -1,
 					            _("Family"), gtk_cell_renderer_text_new(),
 					            "text", COL_NAME,
 					            NULL);
-	gtk_tree_view_insert_column_with_attributes(tree, -1,
+	gtk_tree_view_insert_column_with_attributes(GTK_TREE_VIEW(tree), -1,
 					            _("Style"), gtk_cell_renderer_text_new(),
 					            "text", COL_STYLE,
 					            NULL);
@@ -164,13 +165,13 @@ fm_window_init(FMWindow* self) {
 	font_selection_changed(self, gtk_tree_view_get_selection(GTK_TREE_VIEW(tree)));
 
 	scroll = gtk_hbox_new(FALSE, 0);
-	self->progress = gtk_progress_bar_new();
-	gtk_box_pack_start(scroll, self->progress, FALSE, FALSE, 0);
-	self->status = gtk_statusbar_new();
+	self->progress = GTK_PROGRESS_BAR(gtk_progress_bar_new());
+	gtk_box_pack_start(GTK_BOX(scroll), GTK_WIDGET(self->progress), FALSE, FALSE, 0);
+	self->status = GTK_STATUSBAR(gtk_statusbar_new());
 	self->context_load = gtk_statusbar_get_context_id(self->status, "Loading");
-	gtk_box_pack_start(scroll, self->status, TRUE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(scroll), GTK_WIDGET(self->status), TRUE, TRUE, 0);
 	gtk_widget_show_all(scroll);
-	gtk_box_pack_start(HERZI_MAIN_WINDOW(self)->vbox, scroll, FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(HERZI_MAIN_WINDOW(self)->vbox), scroll, FALSE, FALSE, 0);
 	fw_prepare_lazy_init(self);
 
 	g_signal_connect_swapped(glade_xml_get_widget(xml, "entry_preview_text"), "notify::text",

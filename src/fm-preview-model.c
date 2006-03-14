@@ -30,6 +30,7 @@
 #include <glib/gi18n.h>
 #include <pango/pango-enum-types.h>
 #include <pango/pango-font.h>
+#include <pango/pangofc-fontmap.h>
 #include <gdk/gdkcolor.h>
 
 static GType columns[FM_PREVIEW_MODEL_N_COLUMNS] = {0};

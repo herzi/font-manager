@@ -97,7 +97,7 @@ fpl_display_font(GtkTreeModel* model, GtkTreePath* path, GtkTreeIter* iter, gpoi
 		NULL
 	};
 	gtk_tree_model_get(model, iter, FM_PREVIEW_MODEL_COL_PATTERN, &pattern, -1);
-	FcPatternGetString(pattern, FC_FILE, 0, &argv[1]);
+	FcPatternGetString(pattern, FC_FILE, 0, (FcChar8**)&argv[1]);
 
 	gdk_spawn_on_screen(gtk_widget_get_screen(widget),
 			    NULL,
