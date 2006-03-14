@@ -1,5 +1,10 @@
 2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
 
+	* data/Makefile.am,
+	* data/font-manager.desktop.in: added .desktop file
+
+2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
+
 	* Makefile.am,
 	* configure.in,
 	* doc/Makefile.am,
