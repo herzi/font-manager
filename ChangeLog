@@ -1,5 +1,10 @@
 2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
 
+	* src/fm-preview-list.c: show "Display Font" only if at least one font
+	is selected
+
+2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
+
 	* src/fm-preview-list.c: fixed compile warnings
 
 2006-03-14  Sven Herzberg  <herzi@gnome-de.org>

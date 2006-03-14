@@ -158,6 +158,7 @@ fpl_set_document_font(FMPreviewList* self) {
 
 static void
 fpl_set_window_font(FMPreviewList* self) {
+	// FIXME: check whether it is the application font, set the boolean key correclty too
 	gtk_tree_selection_selected_foreach(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)),
 					    (GtkTreeSelectionForeachFunc)fpl_set_app_font,
 					    "/apps/metacity/general/titlebar_font");
@@ -181,8 +182,13 @@ fpl_button_press_event(GtkWidget* widget, GdkEventButton* ev) {
 		}
 
 		gtk_menu_popup(glade_xml_get_widget(xml, "popup_preview"), NULL, NULL, NULL, NULL, ev->button, ev->time);
-		g_signal_connect_swapped(glade_xml_get_widget(xml, "popup_display_font"), "activate",
-					 G_CALLBACK(fpl_display_fonts), self);
+
+		if(gtk_tree_selection_count_selected_rows(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)))) {
+			g_signal_connect_swapped(glade_xml_get_widget(xml, "popup_display_font"), "activate",
+						 G_CALLBACK(fpl_display_fonts), self);
+		} else {
+			gtk_widget_set_sensitive(glade_xml_get_widget(xml, "popup_display_font"), FALSE);
+		}
 
 		if(gtk_tree_selection_count_selected_rows(gtk_tree_view_get_selection(GTK_TREE_VIEW(self))) == 1) {
 			g_signal_connect_swapped(glade_xml_get_widget(xml, "popup_application_font"), "activate",
