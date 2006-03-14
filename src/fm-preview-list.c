@@ -23,7 +23,7 @@
 
 #include "fm-preview-list.h"
 
-#ifdef HAVE_CONFIG_G
+#ifdef HAVE_CONFIG_H
 # include <config.h>
 #endif
 
@@ -176,7 +176,7 @@ fpl_button_press_event(GtkWidget* widget, GdkEventButton* ev) {
 	gboolean retval = FALSE;
 	if(ev->button == 3) {
 		FMPreviewList* self = FM_PREVIEW_LIST(widget);
-		GladeXML* xml = glade_xml_new("../data/font-manager.glade", "popup_preview", NULL);
+		GladeXML* xml = glade_xml_new(PACKAGE_DATA_DIR "/font-manager/font-manager.glade", "popup_preview", NULL);
 		if(!gtk_tree_selection_count_selected_rows(gtk_tree_view_get_selection(GTK_TREE_VIEW(self)))) {
 			GTK_WIDGET_CLASS(fm_preview_list_parent_class)->button_press_event(widget, ev);
 		}

@@ -135,7 +135,15 @@ fm_window_init(FMWindow* self) {
 		 * tree = NULL,
 		 * scroll = NULL;
 	GtkTreeModel* sort = NULL;
-	GladeXML* xml = glade_xml_new("../data/font-manager.glade", "main_content", NULL);
+	GladeXML* xml = glade_xml_new(PACKAGE_DATA_DIR "/font-manager/font-manager.glade", "main_content", NULL);
+
+	if(!xml) {
+		GtkWidget* w = gtk_message_dialog_new(NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, "%s", _("The user interface could not be loaded"));
+		gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(w), _("Please make sure the font manager was installed correctly."));
+		gtk_widget_show(w);
+		gtk_dialog_run(GTK_DIALOG(w));
+		exit(1);
+	}
 
 	gtk_window_set_title(GTK_WINDOW(self), _("Font Manager"));
 
@@ -181,12 +189,10 @@ fm_window_init(FMWindow* self) {
 	g_object_unref(xml);
 }
 
-#define GCONF_PREFIX "/apps/font-manager/"
-
 static gchar*
 fm_get_geometry(HerziMainWindow* window) {
 	GConfClient* client = gconf_client_get_default();
-	gchar* geometry = gconf_client_get_string(client, GCONF_PREFIX "geometry", NULL);
+	gchar* geometry = gconf_client_get_string(client, PACKAGE_GCONF_PATH "geometry", NULL);
 	g_object_unref(client);
 	return geometry;
 }
@@ -194,7 +200,7 @@ fm_get_geometry(HerziMainWindow* window) {
 static void
 fm_set_geometry(HerziMainWindow* window, gchar const* geometry) {
 	GConfClient* client = gconf_client_get_default();
-	gconf_client_set_string(client, GCONF_PREFIX "geometry", geometry, NULL);
+	gconf_client_set_string(client, PACKAGE_GCONF_PATH "geometry", geometry, NULL);
 	g_object_unref(client);
 }
 

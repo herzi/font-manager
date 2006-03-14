@@ -137,7 +137,7 @@ PACKAGE_DATA_DIR="${PACKAGE_PREFIX}/${DATADIRNAME}"
 AC_DEFINE_UNQUOTED(PACKAGE_DATA_DIR,"$PACKAGE_DATA_DIR",
 		[The package's data path])
 
-AC_DEFINE_UNQUOTED(PACKAGE_GCONF_PATH, "/apps/criawips",
+AC_DEFINE_UNQUOTED(PACKAGE_GCONF_PATH, "/apps/font-manager/",
                 [The package's gconf base path])
 
 dnl  -------------------------------
@@ -146,6 +146,7 @@ dnl  -------------------------------
 
 AC_OUTPUT([
   Makefile
+  data/Makefile
   src/Makefile
   po/Makefile.in
 ])
