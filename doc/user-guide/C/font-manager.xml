@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML 4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML 4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
 <article id="font-manager-user-guide">
   <articleinfo>
     <title>Font Manager User Guide</title>
@@ -17,7 +17,7 @@
       <year>2006</year> <holder>Sven Herzberg</holder>
     </copyright>
     <publisher>
-      <publishername>Font Manager Project</publishername>
+      <publishername>The Font Manager Project</publishername>
     </publisher>
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
     <revhistory>
@@ -28,14 +28,29 @@
     </revhistory>
   </articleinfo>
 
-  <section id="introduction">
-    <title>Introduction</title>
+  <part id="getting-started">
+    <title>Getting Started</title> 
+    <section id="introduction">
+      <title>Introduction</title>
       <para>Read this manual to learn about the font manager.</para>
-  </section>
- 
-   <section id="getting-started">
-      <title>Getting Started</title> 
-      <para>Just launch the font manager to get started.</para>
-   </section>
+    </section>
+    <section id="main-window">
+      <title>The Main Window</title>
+      <para>Learn how to use the different part of the main window correctly.</para>
+    </section>
+  </part>
+
+  <part id="font-management">
+    <title>Font Management</title>
+    <section id="font-installation">
+      <title>Font Installation</title>
+      <para>The font manager cannot install fonts yet.</para>
+    </section>
+
+    <section id="font-uninstallation">
+      <title>Font uninstallation</title>
+      <para>The font manager cannot uninstall fonts yet.</para>
+    </section>
+  </part>
 
 </article>
