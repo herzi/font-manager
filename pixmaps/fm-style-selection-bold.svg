@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.0"
+   width="34"
+   height="16"
+   id="svg2233">
+  <defs
+     id="defs2235" />
+  <g
+     id="layer1">
+    <text
+       x="4.8044624"
+       y="12.479555"
+       style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline;font-family:Bitstream Vera Sans"
+       id="text1307"
+       xml:space="preserve"><tspan
+         x="4.8044624"
+         y="12.479555"
+         style="font-size:12px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Bitstream Vera Sans"
+         id="tspan1309">Abc</tspan></text>
+    <rect
+       width="31.368132"
+       height="12.999998"
+       ry="3.7274837"
+       x="1.2062567"
+       y="1.5666676"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.99999946;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
+       id="rect1311" />
+  </g>
+</svg>

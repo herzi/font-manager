@@ -1,3 +1,11 @@
+2006-03-20  Jörg Kreß  <josh@gnome-de.org>
+	* pixmaps/fm-icon.svg,
+	* pixmaps/fm-style-selection-regular.svg,
+	* pixmaps/fm-style-selection-italic.svg,
+	* pixmaps/fm-style-selection-bold.svg,
+	* pixmaps/fm-style-selection-bolditalic.svg: added style selection
+	icons and program icon in first draft versions
+
 2006-03-20  Sven Herzberg  <herzi@gnome-de.org>
 
 	* doc/user-guide/C/font-manager.xml,
