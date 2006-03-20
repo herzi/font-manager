@@ -3,3 +3,5 @@ src/fm-preview-list.c
 src/fm-preview-model.c
 src/fm-window.c
 src/herzi-main-window.c
+data/font-manager.desktop.in
+src/fm-main.c

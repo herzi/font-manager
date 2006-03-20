@@ -1,3 +1,8 @@
+2006-03-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* Makefile.am,
+	* po/POTFILES.in: distcheck fixed
+
 2006-03-14  Sven Herzberg  <herzi@gnome-de.org>
 
 	* data/Makefile.am,
