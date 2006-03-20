@@ -1,5 +1,11 @@
 2006-03-20  Sven Herzberg  <herzi@gnome-de.org>
 
+	* src/herzi-main-window.c: added error dialog when menu construction
+	fails; added accelerator group to the window - based upon patch from
+	Emil Soleyman
+
+2006-03-20  Sven Herzberg  <herzi@gnome-de.org>
+
 	* Makefile.am,
 	* po/POTFILES.in: distcheck fixed
 

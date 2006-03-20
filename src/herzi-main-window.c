@@ -79,22 +79,43 @@ static gchar const * const ui =
 
 /* GType stuff */
 static void
+hmw_menu_error_dialog(GtkWindow* window, GError* error) {
+        GtkWidget *error_dialog = gtk_message_dialog_new(window,
+							 (GtkDialogFlags)GTK_DIALOG_DESTROY_WITH_PARENT,
+							 GTK_MESSAGE_ERROR,
+							 GTK_BUTTONS_CLOSE,
+							 _("Building the menu bar failed"), NULL);
+
+        gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(error_dialog),
+						 "%s\n\n<i>%s</i>",
+						 _("This is an error in your application, see below for more details:"),
+						 error->message);
+
+        gtk_dialog_run(GTK_DIALOG(error_dialog));
+        gtk_widget_destroy(error_dialog);
+}
+
+static void
 herzi_main_window_init(HerziMainWindow* self) {
-	GError   * error = NULL;
 	GtkActionGroup* actions;
+	GtkWindow     * window = GTK_WINDOW(self);
+	GError   * error = NULL;
+
 	self->vbox  = gtk_vbox_new(FALSE, 0);
 
 	// add ourselves to the window list
 	windows = g_list_prepend(windows, self);
 
 	self->ui_manager = gtk_ui_manager_new();
+	gtk_window_add_accel_group(window,
+				   gtk_ui_manager_get_accel_group(self->ui_manager));
 	actions = gtk_action_group_new("MainWindowActions");
 	gtk_action_group_add_actions(actions, hmw_actions, G_N_ELEMENTS(hmw_actions), self);
 	gtk_ui_manager_insert_action_group(self->ui_manager, actions, 0);
 	g_object_unref(actions);
 	gtk_ui_manager_add_ui_from_string(self->ui_manager, ui, -1, &error);
 	if(error) {
-		g_message("FIXME: we should have an error dialog here: %s", error->message);
+		hmw_menu_error_dialog(window, error);
 		g_error_free(error);
 		error = NULL;
 	}
