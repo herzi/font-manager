@@ -140,6 +140,7 @@ G_DEFINE_TYPE_WITH_CODE(FMPreviewModel, fm_preview_model, G_TYPE_OBJECT,
 
 static void
 fm_preview_model_init(FMPreviewModel* self) {
+	// TRANSLATORS: this is a pangram (many many characters in one sentence), please do NOT translate literally
 	self->text = g_strdup(_("The quick brown fox jumps over the lazy dog."));
 	self->size = 12.0;
 }

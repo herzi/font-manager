@@ -1,5 +1,10 @@
 2006-03-20  Sven Herzberg  <herzi@gnome-de.org>
 
+	* doc/user-guide/C/font-manager.xml,
+	* src/fm-preview-model.c: added information about pangrams
+
+2006-03-20  Sven Herzberg  <herzi@gnome-de.org>
+
 	* src/herzi-main-window.c: added error dialog when menu construction
 	fails; added accelerator group to the window - based upon patch from
 	Emil Soleyman

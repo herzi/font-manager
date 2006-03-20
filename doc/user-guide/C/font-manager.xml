@@ -53,4 +53,17 @@
     </section>
   </part>
 
+  <glossary id="glossary">
+    <title>Glossary</title>
+
+    <glossentry>
+      <glossterm>Pangram</glossterm>
+      <glossdef>
+        <para>
+	  A pangram is a sentence that containes all (or at least most) of the characters of an alphabet.
+	</para>
+      </glossdef>
+    </glossentry>
+  </glossary>
+
 </article>
