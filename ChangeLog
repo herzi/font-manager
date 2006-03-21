@@ -1,5 +1,9 @@
 2006-03-21  Sven Herzberg  <herzi@gnome-de.org>
 
+	* src/fm-window.c: hide the close menu item
+
+2006-03-21  Sven Herzberg  <herzi@gnome-de.org>
+
 	* src/fm-window.c: use the new icon
 
 2006-03-21  Sven Herzberg  <herzi@gnome-de.org>

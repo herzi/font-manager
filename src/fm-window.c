@@ -206,7 +206,11 @@ fw_init_menus_and_toolbars(FMWindow* self) {
 
 	if(error) {
 		g_critical("%s", error->message);
+		g_error_free(error);
+		error = NULL;
 	}
+
+	gtk_action_set_visible(gtk_ui_manager_get_action(ui_manager, "/menubar/File/FileClose"), FALSE);
 }
 
 static void
