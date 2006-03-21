@@ -3,68 +3,160 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager-guide 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-14 15:29+0100\n"
-"PO-Revision-Date: 2006-03-18 22:44+0100\n"
+"POT-Creation-Date: 2006-03-21 18:06+0100\n"
+"PO-Revision-Date: 2006-03-21 18:10+0100\n"
 "Last-Translator: Sven Herzberg <herzi@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit"
 
-#: ../C/user-guide.xml:5(title)
+#: C/legal.xml:5(para)
+msgid "to copy, distribute, display, and perform the work"
+msgstr ""
+
+#: C/legal.xml:6(para)
+msgid "to make derivative works"
+msgstr ""
+
+#: C/legal.xml:7(para)
+msgid "to make commercial use of the work"
+msgstr ""
+
+#: C/legal.xml:2(para)
+msgid "You are free: <placeholder-1/>"
+msgstr "Es steht Ihnen frei: <placeholder-1/>"
+
+#: C/legal.xml:14(para)
+msgid ""
+"Attribution: You must attribute the work in the manner specified by the "
+"author or licensor."
+msgstr ""
+
+#: C/legal.xml:15(para)
+msgid ""
+"Share Alike: If you alter, transform, or build upon this work, you may "
+"distribute the resulting work only under a license identical to this one."
+msgstr ""
+
+#: C/legal.xml:16(para)
+msgid ""
+"For any reuse or distribution, you must make clear to others the license "
+"terms of this work."
+msgstr ""
+
+#: C/legal.xml:17(para)
+msgid ""
+"Any of these conditions can be waived if you get permission from the "
+"copyright holder."
+msgstr ""
+
+#: C/legal.xml:11(para)
+msgid ""
+"Under the following conditions: <placeholder-1/> Your fair use and other "
+"rights are in no way affected by the above."
+msgstr ""
+
+#: C/legal.xml:22(para)
+msgid ""
+"This is a human-readable summary of the <ulink url=\"http://creativecommons."
+"org/licenses/by-sa/2.5/legalcode\">Legal Code (the full license)</ulink>."
+msgstr ""
+
+#: C/font-manager.xml:5(title)
 msgid "Font Manager User Guide"
 msgstr "Anleitung zur Schriftverwaltung"
 
-#: ../C/user-guide.xml:8(firstname)
+#: C/font-manager.xml:8(firstname)
 msgid "Sven"
 msgstr "Sven"
 
-#: ../C/user-guide.xml:8(surname)
+#: C/font-manager.xml:8(surname)
 msgid "Herzberg"
 msgstr "Herzberg"
 
-#: ../C/user-guide.xml:11(email)
+#: C/font-manager.xml:11(email)
 msgid "herzi@gnome.org"
 msgstr "herzi@gnome.org"
 
-#: ../C/user-guide.xml:17(year)
+#: C/font-manager.xml:17(year)
 msgid "2006"
 msgstr "2006"
 
-#: ../C/user-guide.xml:17(holder)
+#: C/font-manager.xml:17(holder)
 msgid "Sven Herzberg"
 msgstr "Sven Herzberg"
 
-#: ../C/user-guide.xml:20(publishername)
-msgid "Font Manager Project"
+#: C/font-manager.xml:20(publishername)
+msgid "The Font Manager Project"
 msgstr "Das Schriftverwaltungsprojekt"
 
-#: ../C/user-guide.xml:25(revnumber)
+#: C/font-manager.xml:25(revnumber)
 msgid "0.0.1"
 msgstr "0.0.1"
 
-#: ../C/user-guide.xml:26(date)
+#: C/font-manager.xml:26(date)
 msgid "2006-03-14"
 msgstr "2006-03-14"
 
-#: ../C/user-guide.xml:32(title)
-msgid "Introduction"
-msgstr "Einführung"
-
-#: ../C/user-guide.xml:33(para)
-msgid "Read this manual to learn about the font manager."
-msgstr "Lesen Sie diese Anleitung um über die Schriftverwaltung zu lernen."
-
-#: ../C/user-guide.xml:37(title)
+#: C/font-manager.xml:32(title)
 msgid "Getting Started"
 msgstr "Erste Schritte"
 
-#: ../C/user-guide.xml:38(para)
-msgid "Just launch the font manager to get started."
-msgstr "Starten Sie einfach die Schriftverwaltung um anzufangen."
+#: C/font-manager.xml:34(title)
+msgid "Introduction"
+msgstr "Einführung"
+
+#: C/font-manager.xml:35(para)
+msgid "Read this manual to learn about the font manager."
+msgstr "Lesen Sie diese Anleitung um über die Schriftverwaltung zu lernen."
+
+#: C/font-manager.xml:38(title)
+msgid "The Main Window"
+msgstr "Das Hauptfenster"
+
+#: C/font-manager.xml:39(para)
+msgid "Learn how to use the different part of the main window correctly."
+msgstr "Lernen Sie verschiedene Teile des Hauptfensters richtig zu nutzen."
+
+#: C/font-manager.xml:44(title)
+msgid "Font Management"
+msgstr "Schriftverwaltung"
+
+#: C/font-manager.xml:46(title)
+msgid "Font Installation"
+msgstr "Installation von Schriften"
+
+#: C/font-manager.xml:47(para)
+msgid "The font manager cannot install fonts yet."
+msgstr "Die Schriftverwaltung kann noch keine Schriften installieren."
+
+#: C/font-manager.xml:51(title)
+msgid "Font uninstallation"
+msgstr "Deinstallation von Schriften"
+
+#: C/font-manager.xml:52(para)
+msgid "The font manager cannot uninstall fonts yet."
+msgstr "Die Schriftverwaltung kann noch keine Schriften deinstallieren."
+
+#: C/font-manager.xml:57(title)
+msgid "Glossary"
+msgstr "Glossar"
+
+#: C/font-manager.xml:60(glossterm)
+msgid "Pangram"
+msgstr "Pangramm"
+
+#: C/font-manager.xml:62(para)
+msgid ""
+"A pangram is a sentence that containes all (or at least most) of the "
+"characters of an alphabet."
+msgstr "Ein Pangramm ist ein Satz, der alle (oder möglichst viele) Buchstaben des Alphabets beinhaltet."
 
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2.
-#: ../C/user-guide.xml:0(None)
+#: C/font-manager.xml:0(None)
 msgid "translator-credits"
 msgstr "Sven Herzberg"
 
+#~ msgid "Just launch the font manager to get started."
+#~ msgstr "Starten Sie einfach die Schriftverwaltung um anzufangen."
