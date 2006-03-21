@@ -134,6 +134,9 @@ fw_action_help_about(GtkAction* action, FMWindow* self) {
 		"Sven Herzberg",
 		NULL
 	};
+	GdkPixbuf* buf = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(),
+						  "font-manager", 64, 0, NULL);
+
 	GtkWidget* dialog = gtk_about_dialog_new();
 	gtk_about_dialog_set_name   (GTK_ABOUT_DIALOG(dialog), _("Font Manager"));
 	gtk_about_dialog_set_version(GTK_ABOUT_DIALOG(dialog), _("0.0.1")); // FIXME: get this auto-generated and translatable (for arab numbers)
@@ -146,8 +149,12 @@ fw_action_help_about(GtkAction* action, FMWindow* self) {
 	// FIXME: gtk_about_dialog_set_artists
 	// FIXME: gtk_about_dialog_set_documenters
 	gtk_about_dialog_set_translator_credits(GTK_ABOUT_DIALOG(dialog), _("translator-credits"));
-	// FIXME: gtk_about_dialog_set_logo
+	gtk_about_dialog_set_logo(GTK_ABOUT_DIALOG(dialog), buf);
 	// FIXME: gtk_about_dialog_set_url_hook
+
+	if(buf) {
+		g_object_unref(buf);
+	}
 
 	gtk_dialog_run(GTK_DIALOG(dialog));
 	gtk_widget_destroy(dialog);
@@ -210,6 +217,7 @@ fm_window_init(FMWindow* self) {
 		 * scroll = NULL;
 	GtkTreeModel* sort = NULL;
 	GladeXML* xml = glade_xml_new(PACKAGE_DATA_DIR "/font-manager/font-manager.glade", "main_content", NULL);
+	GtkWindow* window = GTK_WINDOW(self);
 
 	if(!xml) {
 		GtkWidget* w = gtk_message_dialog_new(NULL, 0, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, "%s", _("The user interface could not be loaded"));
@@ -219,7 +227,9 @@ fm_window_init(FMWindow* self) {
 		exit(1);
 	}
 
-	gtk_window_set_title(GTK_WINDOW(self), _("Font Manager"));
+	gtk_window_set_default_icon_from_file(PACKAGE_DATA_DIR "/pixmaps/font-manager.svg", NULL);
+	gtk_window_set_title(window, _("Font Manager"));
+	gtk_window_set_icon_name(window, "font-manager");
 	gtk_box_pack_start(GTK_BOX(HERZI_MAIN_WINDOW(self)->vbox), glade_xml_get_widget(xml, "main_content"), TRUE, TRUE, 0);
 
 	fw_init_menus_and_toolbars(self);
