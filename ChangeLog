@@ -1,3 +1,10 @@
+2006-03-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* Makefile.am,
+	* configure.in,
+	* pixmaps/Makefile.am,
+	* pixmaps/fm-icon.svg: renamed the icon, install the icon
+
 2006-03-20  Jörg Kreß  <josh@gnome-de.org>
 	* pixmaps/fm-icon.svg,
 	* pixmaps/fm-style-selection-regular.svg,

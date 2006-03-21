@@ -1,5 +1,6 @@
 de.gmo
 font-manager.pot
+.intltool-merge-cache
 Makefile
 Makefile.in
 Makefile.in.in

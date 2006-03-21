@@ -151,6 +151,7 @@ AC_OUTPUT([
   doc/user-guide/Makefile
   src/Makefile
   po/Makefile.in
+  pixmaps/Makefile
 ])
 
 dnl FIXME add some nice summary

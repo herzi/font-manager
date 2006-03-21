@@ -3,6 +3,7 @@ SUBDIRS=\
 	data \
 	doc \
 	src \
+	pixmaps \
 	po \
 	$(NULL)
 
