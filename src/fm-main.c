@@ -42,6 +42,11 @@ fm_glade_helper(GladeXML* xml, gchar* func_name, gchar* name, gchar* string, gch
 	}
 }
 
+static void
+fm_url_hook(GtkAboutDialog *about, gchar const* link) {
+	gnome_url_show(link, NULL);
+}
+
 int
 main(int argc, char** argv) {
 #ifdef ENABLE_NLS
@@ -57,6 +62,7 @@ main(int argc, char** argv) {
 			   GNOME_PARAM_APP_DATADIR, PACKAGE_DATA_DIR,
 			   GNOME_PARAM_HUMAN_READABLE_NAME, _("Font Manager"),
 			   NULL);
+	gtk_about_dialog_set_url_hook((GtkAboutDialogActivateLinkFunc)fm_url_hook, NULL, NULL);
 
 	glade_set_custom_handler((GladeXMLCustomWidgetHandler)fm_glade_helper, NULL);
 	gtk_widget_show(fm_window_new());

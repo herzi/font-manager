@@ -134,6 +134,14 @@ fw_action_help_about(GtkAction* action, FMWindow* self) {
 		"Sven Herzberg",
 		NULL
 	};
+	gchar const* artists[] = {
+		"Jörg Kress",
+		NULL
+	};
+	gchar const* documenters[] = {
+		"Sven Herzberg",
+		NULL
+	};
 	GdkPixbuf* buf = gtk_icon_theme_load_icon(gtk_icon_theme_get_default(),
 						  "font-manager", 64, 0, NULL);
 
@@ -143,11 +151,11 @@ fw_action_help_about(GtkAction* action, FMWindow* self) {
 	gtk_about_dialog_set_copyright(GTK_ABOUT_DIALOG(dialog), _("Copyright (C) 2006 Sven Herzberg"));
 	gtk_about_dialog_set_comments(GTK_ABOUT_DIALOG(dialog), _("A font management tool for the GNOME desktop environment"));
 	// FIXME: gtk_about_dialog_set_license
-	// FIXME: gtk_about_dialog_set_website
+	gtk_about_dialog_set_website(GTK_ABOUT_DIALOG(dialog), "http://font-manager.blaubeermuffin.de/");
 	// FIXME: gtk_about_dialog_set_website_label
 	gtk_about_dialog_set_authors(GTK_ABOUT_DIALOG(dialog), authors);
-	// FIXME: gtk_about_dialog_set_artists
-	// FIXME: gtk_about_dialog_set_documenters
+	gtk_about_dialog_set_artists(GTK_ABOUT_DIALOG(dialog), artists);
+	gtk_about_dialog_set_documenters(GTK_ABOUT_DIALOG(dialog), documenters);
 	gtk_about_dialog_set_translator_credits(GTK_ABOUT_DIALOG(dialog), _("translator-credits"));
 	gtk_about_dialog_set_logo(GTK_ABOUT_DIALOG(dialog), buf);
 	// FIXME: gtk_about_dialog_set_url_hook
