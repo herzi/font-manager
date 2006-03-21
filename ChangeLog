@@ -1,5 +1,10 @@
 2006-03-21  Sven Herzberg  <herzi@gnome-de.org>
 
+	* doc/user-guide/C/font-manager.xml: made a real docbook book; fix
+	make check errors
+
+2006-03-21  Sven Herzberg  <herzi@gnome-de.org>
+
 	* Makefile.am,
 	* configure.in,
 	* pixmaps/Makefile.am,

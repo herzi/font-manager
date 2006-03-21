@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML 4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
-<article id="font-manager-user-guide">
-  <articleinfo>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML 4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
+<book id="font-manager-user-guide">
+  <bookinfo>
     <title>Font Manager User Guide</title>
     <authorgroup>
       <author>
@@ -26,31 +26,31 @@
         <date>2006-03-14</date>
       </revision>
     </revhistory>
-  </articleinfo>
+  </bookinfo>
 
   <part id="getting-started">
     <title>Getting Started</title> 
-    <section id="introduction">
+    <chapter id="introduction">
       <title>Introduction</title>
       <para>Read this manual to learn about the font manager.</para>
-    </section>
-    <section id="main-window">
+    </chapter>
+    <chapter id="main-window">
       <title>The Main Window</title>
       <para>Learn how to use the different part of the main window correctly.</para>
-    </section>
+    </chapter>
   </part>
 
   <part id="font-management">
     <title>Font Management</title>
-    <section id="font-installation">
+    <chapter id="font-installation">
       <title>Font Installation</title>
       <para>The font manager cannot install fonts yet.</para>
-    </section>
+    </chapter>
 
-    <section id="font-uninstallation">
+    <chapter id="font-uninstallation">
       <title>Font uninstallation</title>
       <para>The font manager cannot uninstall fonts yet.</para>
-    </section>
+    </chapter>
   </part>
 
   <glossary id="glossary">
@@ -66,4 +66,4 @@
     </glossentry>
   </glossary>
 
-</article>
+</book>
