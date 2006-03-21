@@ -129,6 +129,11 @@ fw_update_preview_size(FMWindow* self, GtkSpinButton* spin) {
 }
 
 static void
+fw_action_file_open_folder(GtkAction* action, FMWindow* self) {
+	gnome_url_show("fonts:///", NULL);
+}
+
+static void
 fw_action_help_about(GtkAction* action, FMWindow* self) {
 	gchar const* authors[] = {
 		"Sven Herzberg",
@@ -182,6 +187,9 @@ fw_action_help_index(GtkAction* action, FMWindow* self) {
 }
 
 static GtkActionEntry entries[] = {
+	{"FileOpenFolder", GTK_STOCK_OPEN,	N_("_Open Font Folder..."),
+	 NULL,		NULL, // FIXME: add action hint
+	 G_CALLBACK(fw_action_file_open_folder)},
 	{"Help",	NULL,			N_("_Help")},
 	{"HelpAbout",	GTK_STOCK_ABOUT,	NULL,
 	 NULL,		NULL, // FIXME: check for action hint
@@ -194,6 +202,11 @@ static GtkActionEntry entries[] = {
 static gchar const * const ui =
 "<ui>"
 "	<menubar name='menubar'>"
+"		<menu action='File'>"
+"			<placeholder name='FileOpen'>"
+"				<menuitem action='FileOpenFolder'/>"
+"			</placeholder>"
+"		</menu>"
 "		<menu action='Help'>"
 "			<menuitem action='HelpIndex'/>"
 "			<separator />"
