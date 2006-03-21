@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-14 14:24+0100\n"
-"PO-Revision-Date: 2006-03-14 14:28+0100\n"
+"POT-Creation-Date: 2006-03-21 17:58+0100\n"
+"PO-Revision-Date: 2006-03-21 17:59+0100\n"
 "Last-Translator: Sven Herzberg <herzi@gnome-de.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,8 @@ msgstr "Als _Fenstertitel-Schrift verwenden"
 msgid "Size (pt)"
 msgstr "Größe (Pt)"
 
-#: ../data/font-manager.glade.h:9 ../src/fm-preview-model.c:143
+#. TRANSLATORS: this is a pangram (many many characters in one sentence), please do NOT translate literally
+#: ../data/font-manager.glade.h:9 ../src/fm-preview-model.c:144
 msgid "The quick brown fox jumps over the lazy dog."
 msgstr "Franz jagt im komplett verwahrlosten Taxi quer durch Bayern."
 
@@ -61,50 +62,75 @@ msgstr "Vorschau"
 msgid "Loading system fonts..."
 msgstr "Lade Systemschriften…"
 
-#: ../src/fm-window.c:138 ../src/fm-window.c:204
+#: ../src/fm-window.c:154 ../src/fm-window.c:256
+#: ../data/font-manager.desktop.in.h:2 ../src/fm-main.c:63
 msgid "Font Manager"
-msgstr "Schrift-Verwaltung"
+msgstr "Schriftverwaltung"
 
-#: ../src/fm-window.c:139
+#: ../src/fm-window.c:155
 msgid "0.0.1"
 msgstr "0.0.1"
 
 #. FIXME: get this auto-generated and translatable (for arab numbers)
-#: ../src/fm-window.c:140
+#: ../src/fm-window.c:156
 msgid "Copyright (C) 2006 Sven Herzberg"
 msgstr "Copyright © 2006 Sven Herzberg"
 
-#: ../src/fm-window.c:141
+#: ../src/fm-window.c:157
 msgid "A font management tool for the GNOME desktop environment"
 msgstr "Ein Schrift-Verwaltungs-Werkzeug für die Desktop-Umgebung GNOME."
 
-#. FIXME: gtk_about_dialog_set_artists
-#. FIXME: gtk_about_dialog_set_documenters
-#: ../src/fm-window.c:148
+#: ../src/fm-window.c:164
 msgid "translator-credits"
 msgstr "Sven Herzberg"
 
-#: ../src/fm-window.c:157
+#: ../src/fm-window.c:190
+msgid "_Open Font Folder..."
+msgstr "Schrift-Ordner _öffnen…"
+
+#: ../src/fm-window.c:193
 msgid "_Help"
 msgstr "_Hilfe"
 
 #: ../src/fm-window.c:197
+msgid "_User Guide"
+msgstr "_Benutzerhandbuch"
+
+#: ../src/fm-window.c:248
 msgid "The user interface could not be loaded"
 msgstr "The Benutzeroberfläche konnte nicht geladen werden."
 
-#: ../src/fm-window.c:198
+#: ../src/fm-window.c:249
 msgid "Please make sure the font manager was installed correctly."
-msgstr "Bitte stellen Sie sicher, dass die Schrift-Verwaltung korrekt installiert ist."
+msgstr ""
+"Bitte stellen Sie sicher, dass die Schrift-Verwaltung korrekt installiert "
+"ist."
 
-#: ../src/fm-window.c:221
+#: ../src/fm-window.c:274
 msgid "Family"
 msgstr "Familie"
 
-#: ../src/fm-window.c:225
+#: ../src/fm-window.c:278
 msgid "Style"
 msgstr "Stil"
 
 #: ../src/herzi-main-window.c:57
 msgid "_File"
 msgstr "_Datei"
+
+#: ../src/herzi-main-window.c:87
+msgid "Building the menu bar failed"
+msgstr "Das Erstellen der Menüleiste schlug fehl"
+
+#: ../src/herzi-main-window.c:91
+msgid "This is an error in your application, see below for more details:"
+msgstr "Dies ist ein Fehler in Ihrer Anwendung; weitere Details folgen:"
+
+#: ../data/font-manager.desktop.in.h:1
+msgid "Font Management"
+msgstr "Schriftverwaltung"
+
+#: ../data/font-manager.desktop.in.h:3
+msgid "Install and manage your fonts"
+msgstr "Installieren und Verwalten Sie Ihre Schriften"
 
