@@ -1,6 +1,5 @@
 NULL=
 bin_PROGRAMS=font-manager
-
 font_manager_SOURCES=\
 	fm-main.c \
 	fm-preview-list.c \
@@ -20,7 +19,13 @@ font_manager_SOURCES=\
 font_manager_LDADD=\
 	$(CORE_LIBS) \
 	$(NULL)
+
+noinst_PROGRAMS=camarilla
+camarilla_LDADD=\
+	$(CAMARILLA_LIBS) \
+	$(NULL)
+
 AM_CPPFLAGS=\
-	$(CORE_CFLAGS) \
+	$(CAMARILLA_CFLAGS) \
 	$(NULL)
 

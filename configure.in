@@ -46,7 +46,10 @@ dnl  ----------------------
 dnl | neccessary libraries |--------------------------------------------------
 dnl  ----------------------
 
-PKG_CHECK_MODULES(CORE,[gtk+-2.0 libgnome-2.0 libglade-2.0 fontconfig freetype2 gconf-2.0])
+CORE_DEPS="gtk+-2.0 libgnome-2.0 libglade-2.0 fontconfig freetype2 gconf-2.0"
+PKG_CHECK_MODULES(CORE,[$CORE_DEPS])
+
+PKG_CHECK_MODULES(CAMARILLA,[$CORE_DEPS cspi-1.0])
 
 dnl AC_PATH_PROG(GCONFTOOL, gconftool-2)
 dnl AM_GCONF_SOURCE_2

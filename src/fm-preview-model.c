@@ -231,6 +231,11 @@ fpm_get_value(GtkTreeModel* model, GtkTreeIter* iter, gint column, GValue* value
 	}
 }
 
+static gint
+fpm_iter_n_children(GtkTreeModel* model, GtkTreeIter* iter) {
+	return iter ? 0 : 2 * g_list_length(FM_PREVIEW_MODEL(model)->fonts);
+}
+
 static gboolean
 fpm_iter_children(GtkTreeModel* model, GtkTreeIter* iter, GtkTreeIter* parent) {
 	return gtk_tree_model_iter_nth_child(model, iter, parent, 0);
@@ -273,6 +278,7 @@ fpm_init_tree_model(GtkTreeModelIface* iface) {
 	iface->get_n_columns   = fpm_get_n_columns;
 	iface->get_value       = fpm_get_value;
 	iface->iter_children   = fpm_iter_children;
+	iface->iter_n_children = fpm_iter_n_children;
 	iface->iter_nth_child  = fpm_iter_nth_child;
 	iface->iter_next       = fpm_iter_next;
 }
