@@ -24,45 +24,53 @@
 #include <glib/gmessages.h>
 #include <cspi/spi.h>
 
-static void
-print_accessible(Accessible* acc, gint depth) {
-	gint i = 0, children = 0;
-	gchar* name = Accessible_getName(acc);
-	gchar* role = Accessible_getRoleName(acc);
-	for(; i < depth; i++) {
-		g_print("\t");
-	}
-	if(name && *name) {
-		g_print("%s (%s)\n", name, role);
-	} else {
-		g_print("(%s)\n", role);
-	}
-	SPI_freeString(role);
-	SPI_freeString(name);
+static Accessible*
+find_font_manager(void) {
+	gint desktop,
+	     n_desktops = SPI_getDesktopCount();
+	Accessible* font_manager = NULL;
 
-	children = Accessible_getChildCount(acc);
-	for(i = 0; i < children; i++) {
-		Accessible* child = Accessible_getChildAtIndex(acc, i);
-		print_accessible(child, depth + 1);
-		Accessible_unref(child);
+	for(desktop = 0; desktop < n_desktops && !font_manager; desktop++) {
+		Accessible* desk = SPI_getDesktop(desktop);
+		gint application, n_applications = Accessible_getChildCount(desk);
+		for(application = 0; application < n_applications && !font_manager; application++) {
+			Accessible* app = Accessible_getChildAtIndex(desk, application);
+			gchar* name = Accessible_getName(app);
+			if(name && !strcmp("font-manager", name)) {
+				font_manager = app;
+			} else {
+				Accessible_unref(app);
+			}
+			SPI_freeString(name);
+		}
+		Accessible_unref(desk);
 	}
+
+	if(!font_manager) {
+		g_critical("Could not find the font manager (is it running with accessibility enabled?), aborting...");
+	}
+
+	return font_manager;
 }
 
 int
 main(int argc, char** argv) {
-	gint i, n_desktops;
+	Accessible* font_manager = NULL;
 
 	SPI_init();
-	n_desktops = SPI_getDesktopCount();
 
 	// start the application:
 	// GTK_MODULES="gail:atk-bridge" ./font-manager
 
-	for(i = 0; i < n_desktops; i++) {
-		Accessible* desktop = SPI_getDesktop(i);
-		print_accessible(desktop, 0);
-		Accessible_unref(desktop);
-	}
+	font_manager = find_font_manager();
+	// get the x window id via IPC
+	// grab a screenshot with xwd
+	// convert it to a png with convert (for now)
+	// load the image with cairo
+	// do some magic foo
+	// be happy
+
+	Accessible_unref(font_manager);
 
 	return 0;
 }

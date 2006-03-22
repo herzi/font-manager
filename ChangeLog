@@ -1,5 +1,9 @@
 2006-03-22  Sven Herzberg  <herzi@gnome-de.org>
 
+	* src/camarilla.c: added font manager finding
+
+2006-03-22  Sven Herzberg  <herzi@gnome-de.org>
+
 	* configure.in: configure camarilla
 	* src/Makefile.am: added build rules for camarilla
 	* src/camarilla.c: new
