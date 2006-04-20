@@ -22,7 +22,7 @@ F77=no
 GCJ=no
 
 AC_PROG_CC
-dnl AC_PROG_LIBTOOL
+AC_PROG_LIBTOOL
 AC_PROG_INTLTOOL
 
 dnl  -----------------------------

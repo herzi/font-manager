@@ -1,7 +1,6 @@
 NULL=
-bin_PROGRAMS=font-manager
-font_manager_SOURCES=\
-	fm-main.c \
+lib_LTLIBRARIES=libfont-manager.la
+libfont_manager_la_SOURCES=\
 	fm-preview-list.c \
 	fm-preview-list.h \
 	fm-preview-model.c \
@@ -16,13 +15,24 @@ font_manager_SOURCES=\
 	herzi-main-window.c \
 	herzi-main-window.h \
 	$(NULL)
-font_manager_LDADD=\
+libfont_manager_la_LIBADD=\
 	$(CORE_LIBS) \
+	$(NULL)
+
+bin_PROGRAMS=font-manager
+font_manager_SOURCES=\
+	fm-main.c \
+	$(NULL)
+font_manager_LDADD=\
+	$(libfont_manager_la_LIBADD) \
+	libfont-manager.la \
 	$(NULL)
 
 noinst_PROGRAMS=camarilla
 camarilla_LDADD=\
 	$(CAMARILLA_LIBS) \
+	$(libfont_manager_la_LIBADD) \
+	libfont-manager.la \
 	$(NULL)
 
 AM_CPPFLAGS=\

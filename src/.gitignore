@@ -1,5 +1,6 @@
 camarilla
 .deps
 font-manager
+.libs
 Makefile
 Makefile.in

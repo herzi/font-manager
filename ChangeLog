@@ -1,3 +1,9 @@
+2006-04-20  Sven Herzberg  <herzi@gnome-de.org>
+
+	* configure.in: check for libtool
+	* src/Makefile.am: build the most important code into a library
+	* src/camarilla.c: updated code
+
 2006-03-22  Sven Herzberg  <herzi@gnome-de.org>
 
 	* src/camarilla.c: added font manager finding

@@ -57,10 +57,10 @@ int
 main(int argc, char** argv) {
 	Accessible* font_manager = NULL;
 
-	SPI_init();
-
 	// start the application:
 	// GTK_MODULES="gail:atk-bridge" ./font-manager
+
+	SPI_init();
 
 	font_manager = find_font_manager();
 	// get the x window id via IPC

@@ -1,9 +1,11 @@
 aclocal.m4
 autom4te.cache
+config.guess
 config.h
 config.h.in
 config.log
 config.status
+config.sub
 configure
 COPYING
 depcomp
@@ -17,6 +19,8 @@ intltool-merge
 intltool-merge.in
 intltool-update
 intltool-update.in
+libtool
+ltmain.sh
 Makefile
 Makefile.in
 missing
