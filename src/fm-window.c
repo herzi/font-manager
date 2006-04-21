@@ -32,6 +32,7 @@
 #include <pango/pangofc-fontmap.h>
 #include <gconf/gconf-client.h>
 #include <glade/glade.h>
+#include <libgnomevfs/gnome-vfs.h>
 
 #include "fm-preview-list.h"
 
@@ -54,12 +55,19 @@ enum {
 	COL_NAME,
 	COL_STYLE,
 	COL_PATTERN,
+	COL_URI,
+	COL_UNINSTALLABLE,
 	N_COLUMNS
 };
 
 static gboolean
 update_list(struct data* data) {
 	gint8* s = NULL;
+	FcChar8 *file;
+	gchar *tmp;
+	GnomeVFSURI *uri, *parent;
+	GnomeVFSFileInfo info;
+	gboolean uninstallable = FALSE;
 
 	if(!FcPatternGetString(data->s->fonts[data->i], "family", 0, (FcChar8**)&s)) {
 		GtkTreeIter iter;
@@ -72,6 +80,23 @@ update_list(struct data* data) {
 		if(!FcPatternGetString(data->s->fonts[data->i], FC_STYLE, 0, (FcChar8**)&s)) {
 			gtk_list_store_set(store, &iter,
 					   COL_STYLE, s,
+					   -1);
+		}
+		if(!FcPatternGetString(data->s->fonts[data->i], FC_FILE, 0, &file)) {
+			tmp = gnome_vfs_get_uri_from_local_path((gchar *)file);
+			uri = gnome_vfs_uri_new(tmp);
+			g_free(tmp);
+
+			parent = gnome_vfs_uri_get_parent(uri);
+			if(!gnome_vfs_get_file_info_uri(parent, &info, 
+						        GNOME_VFS_FILE_INFO_FOLLOW_LINKS | GNOME_VFS_FILE_INFO_GET_ACCESS_RIGHTS)) {
+				uninstallable = (info.permissions & GNOME_VFS_PERM_ACCESS_WRITABLE) == GNOME_VFS_PERM_ACCESS_WRITABLE;
+			}
+			gnome_vfs_uri_unref(parent);
+
+			gtk_list_store_set(store, &iter,
+					   COL_URI, uri,
+					   COL_UNINSTALLABLE, uninstallable,
 					   -1);
 		}
 	}
@@ -126,6 +151,73 @@ fw_update_preview_text(FMWindow* self, GParamSpec* pspec, GtkEntry* entry) {
 static void
 fw_update_preview_size(FMWindow* self, GtkSpinButton* spin) {
 	fm_preview_list_set_size(FM_PREVIEW_LIST(self->preview), gtk_spin_button_get_value(spin));
+}
+
+static void
+fw_install_fonts(FMWindow* self, GSList *font_uris) {
+	gchar *fonts_dir, *name;
+	GnomeVFSURI *fonts_uri, *source_uri, *target_uri;
+	GnomeVFSResult result;
+	GSList *tmp;
+	GList *source_list = NULL, *target_list = NULL;
+
+	fonts_dir = g_build_filename(g_get_home_dir(), ".fonts", NULL);
+	fonts_uri = gnome_vfs_uri_new (fonts_dir);
+	g_free (fonts_dir);
+	result = gnome_vfs_make_directory_for_uri (fonts_uri, 0755);
+
+	if(result != GNOME_VFS_OK && result != GNOME_VFS_ERROR_FILE_EXISTS) {
+		gnome_vfs_uri_unref (fonts_uri);
+		return;
+	}
+
+	for(tmp = font_uris; tmp != NULL; tmp = tmp->next) {
+		source_uri = gnome_vfs_uri_new((gchar *)tmp->data);
+		source_list = g_list_append(source_list, source_uri);
+
+		name = gnome_vfs_uri_extract_short_name(source_uri);
+		target_uri = gnome_vfs_uri_append_file_name (fonts_uri, name);
+		g_free (name);
+		target_list = g_list_append(target_list, target_uri);
+	}
+
+	result = gnome_vfs_xfer_uri_list(source_list,
+					 target_list,
+					 GNOME_VFS_XFER_DEFAULT,
+					 GNOME_VFS_XFER_ERROR_MODE_ABORT,
+					 GNOME_VFS_XFER_OVERWRITE_MODE_SKIP,
+					 NULL, NULL);
+
+	g_list_foreach(source_list, (GFunc)gnome_vfs_uri_unref, NULL);
+	g_list_foreach(target_list, (GFunc)gnome_vfs_uri_unref, NULL);
+	g_list_free(source_list);
+	g_list_free(target_list);
+
+	gnome_vfs_uri_unref(fonts_uri);
+}
+
+static void
+fw_action_file_install(GtkAction* action, FMWindow* self) {
+	GtkWidget *dialog;
+
+	dialog = gtk_file_chooser_dialog_new("Install Fonts",
+					     GTK_WINDOW(self),
+					     GTK_FILE_CHOOSER_ACTION_OPEN,
+					     GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+					     "_Install Fonts", GTK_RESPONSE_ACCEPT,
+					     NULL);
+	gtk_file_chooser_set_select_multiple(GTK_FILE_CHOOSER(dialog), TRUE);
+
+	if(gtk_dialog_run(GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) {
+		GSList *font_uris;
+
+		font_uris = gtk_file_chooser_get_uris(GTK_FILE_CHOOSER (dialog));
+		fw_install_fonts(self, font_uris);
+		g_slist_foreach(font_uris, (GFunc)g_free, NULL);
+		g_slist_free(font_uris);
+	}
+
+	gtk_widget_destroy(dialog);
 }
 
 static void
@@ -187,6 +279,9 @@ fw_action_help_index(GtkAction* action, FMWindow* self) {
 }
 
 static GtkActionEntry entries[] = {
+	{"FileInstall", NULL,			N_("_Install Font..."),
+	 NULL,		NULL,
+	 G_CALLBACK(fw_action_file_install)},
 	{"FileOpenFolder", GTK_STOCK_OPEN,	N_("_Open Font Folder..."),
 	 NULL,		NULL, // FIXME: add action hint
 	 G_CALLBACK(fw_action_file_open_folder)},
@@ -204,6 +299,7 @@ static gchar const * const ui =
 "	<menubar name='menubar'>"
 "		<menu action='File'>"
 "			<placeholder name='FileOpen'>"
+"				<menuitem action='FileInstall'/>"
 "				<menuitem action='FileOpenFolder'/>"
 "			</placeholder>"
 "		</menu>"
@@ -263,7 +359,7 @@ fm_window_init(FMWindow* self) {
 	self->preview = glade_xml_get_widget(xml, "preview_list");
 
 	/* system font list */
-	self->model = GTK_TREE_MODEL(gtk_list_store_new(N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_POINTER));
+	self->model = GTK_TREE_MODEL(gtk_list_store_new(N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_POINTER, G_TYPE_POINTER, G_TYPE_BOOLEAN));
 	sort = gtk_tree_model_sort_new_with_model(self->model);
 	gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(sort), COL_NAME, GTK_SORT_ASCENDING);
 
@@ -277,6 +373,10 @@ fm_window_init(FMWindow* self) {
 	gtk_tree_view_insert_column_with_attributes(GTK_TREE_VIEW(tree), -1,
 					            _("Style"), gtk_cell_renderer_text_new(),
 					            "text", COL_STYLE,
+					            NULL);
+	gtk_tree_view_insert_column_with_attributes(GTK_TREE_VIEW(tree), -1,
+					            _("uninstallable"), gtk_cell_renderer_toggle_new(),
+					            "active", COL_UNINSTALLABLE,
 					            NULL);
 	g_signal_connect_swapped(gtk_tree_view_get_selection(GTK_TREE_VIEW(tree)), "changed",
 				 G_CALLBACK(font_selection_changed), self);

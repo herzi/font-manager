@@ -1,3 +1,8 @@
+2006-04-21  Sven Herzberg  <herzi@gnome-de.org>
+
+	* src/fm-window.c: patch from Jan Arne Petersen to provide install
+	code and display whether a font can be uninstalled
+
 2006-04-20  Sven Herzberg  <herzi@gnome-de.org>
 
 	* configure.in: check for libtool
